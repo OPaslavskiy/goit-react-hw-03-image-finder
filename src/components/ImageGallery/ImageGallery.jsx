@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import Loader from '../Loader/Loader';
-import Button from '../Button/Button';
+import ButtonLoad from '../Button/Button';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 import { ImageGalleryUl } from './ImageGallery.styled';
 import { getPhoto } from '../../services/getPhoto';
@@ -22,11 +22,6 @@ class ImageGallery extends Component {
     page: 1,
   };
 
-  handleLoad = () => {
-    console.log(`123456`);
-    this.setState(prev => ({ page: prev.page + 1 }));
-  };
-
   componentDidUpdate(prevProps, prevState) {
     if (
       prevProps.searchParameter !== this.props.searchParameter ||
@@ -39,6 +34,7 @@ class ImageGallery extends Component {
         .then(photo => {
           if (photo.hits.length) {
             this.setState({ gallery: photo, status: 'resolved' });
+            // images: [...this.state.images, ...data.hits];
           } else {
             Notiflix.Notify.warning('Enter a valid search parameter');
             this.setState({ status: 'rejected' });
@@ -50,6 +46,10 @@ class ImageGallery extends Component {
     }
   }
 
+  handleLoad = () => {
+    this.setState(prevState => ({ page: prevState.page + 1 }));
+  };
+
   render() {
     const { status, gallery, error } = this.state;
     if (status === 'pending') return <Loader />;
@@ -59,7 +59,7 @@ class ImageGallery extends Component {
           <ImageGalleryUl>
             <ImageGalleryItem photos={gallery} />
           </ImageGalleryUl>
-          <Button type="button" onClick={this.handleLoad} />
+          <ButtonLoad handleLoad={this.handleLoad} />
         </>
       );
 
