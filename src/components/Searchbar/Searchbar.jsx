@@ -25,7 +25,7 @@ class Searchbar extends Component {
 
   handleChange = event => {
     const newSearch = event.target.value;
-    this.setState((this.state = { value: newSearch }));
+    this.setState((this.setState = { value: newSearch }));
   };
 
   handleSubmit = e => {
