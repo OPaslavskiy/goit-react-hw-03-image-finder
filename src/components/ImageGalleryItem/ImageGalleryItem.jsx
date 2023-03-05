@@ -8,7 +8,7 @@ class ImageGalleryItem extends Component {
   };
 
   toggleModal = () => {
-    this.setState(state => ({ showModal: !state.showModal }));
+    this.setState(({ showModal }) => ({ showModal: !showModal }));
   };
 
   render() {
@@ -20,11 +20,8 @@ class ImageGalleryItem extends Component {
           <Image src={webformatURL} alt={tags} />
         </ImageItem>
         {this.state.showModal && (
-          <ModalWindow>
+          <ModalWindow close={this.toggleModal}>
             <img src={largeImageURL} alt={tags} />
-            <button type="button" onClick={this.toggleModal}>
-              Close
-            </button>
           </ModalWindow>
         )}
       </>

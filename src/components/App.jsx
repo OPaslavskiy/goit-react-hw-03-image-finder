@@ -24,7 +24,7 @@ class App extends Component {
     searchParameter: '',
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     if (
       prevState.searchParameter !== this.state.searchParameter ||
       prevState.page !== this.state.page
