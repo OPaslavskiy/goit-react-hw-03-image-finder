@@ -1,11 +1,13 @@
+// import * as Scroll from 'react-scroll';
 import React from 'react';
 import { Component } from 'react';
-import * as Scroll from 'react-scroll';
+import { ImageGalleryUl } from './ImageGallery.styled';
+import { getPhoto } from '../../services/getPhoto';
+
 import Loader from '../Loader/Loader';
 import ButtonLoad from '../Button/Button';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
-import { ImageGalleryUl } from './ImageGallery.styled';
-import { getPhoto } from '../../services/getPhoto';
+
 import Notiflix from 'notiflix';
 Notiflix.Notify.init({
   width: '320px',
@@ -58,13 +60,15 @@ class ImageGallery extends Component {
   handleLoad = () => {
     let Scroll = require('react-scroll');
     let scroll = Scroll.animateScroll;
-    scroll.scrollMore(window.innerHeight - 100);
+    scroll.scrollMore(window.innerHeight - 125);
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
   render() {
     const { status, gallery, error } = this.state;
+
     if (status === 'pending') return <Loader />;
+
     if (status === 'resolved')
       return (
         <>

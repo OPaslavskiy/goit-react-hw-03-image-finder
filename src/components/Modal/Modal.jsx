@@ -1,15 +1,15 @@
-// import React from 'react';
-// import { Modal, Overlay } from './Modal.styled';
+import React from 'react';
+import { Modal, Overlay } from './Modal.styled';
+// import * as basicLightbox from 'basiclightbox';
 
-// const ModalWindow = () => {
-//   return (
-//     <Overlay>
-//       <Modal>
-//         <img src="" alt="" />
-//         MODAL
-//       </Modal>
-//     </Overlay>
-//   );
-// };
+const ModalWindow = ({ bigPhoto, alt }) => {
+  return (
+    <Overlay>
+      <Modal>
+        <img src={bigPhoto} alt={alt} />
+      </Modal>
+    </Overlay>
+  );
+};
 
-// export default ModalWindow;
+export default ModalWindow;

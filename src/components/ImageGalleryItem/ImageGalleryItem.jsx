@@ -1,16 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { ImageItem, Image } from './ImageGalleryItem.styled';
+import ModalWindow from '../Modal/Modal';
 
-const ImageGalleryItem = ({ photos }) => {
-  if (photos) {
-    return photos.map(photo => {
-      return (
-        <ImageItem key={photo.id}>
-          <Image src={photo.largeImageURL} alt={photo.tags} />
-        </ImageItem>
-      );
-    });
+class ImageGalleryItem extends Component {
+  state = {
+    showModal: false,
+  };
+
+  toggleModal = () => {
+    console.log(`open modal`);
+    this.setState({ showModal: true });
+  };
+
+  render() {
+    if (this.props.photos) {
+      return this.props.photos.map(photo => {
+        return (
+          <>
+            <ImageItem key={photo.id} onClick={this.toggleModal}>
+              <Image src={photo.webformatURL} alt={photo.tags} />
+              {this.state.showModal && (
+                <ModalWindow
+                  key={photo.id}
+                  bigPhoto={photo.largeImageURL}
+                  alt={photo.tags}
+                />
+              )}
+            </ImageItem>
+          </>
+        );
+      });
+    }
   }
-};
+}
 
 export default ImageGalleryItem;
