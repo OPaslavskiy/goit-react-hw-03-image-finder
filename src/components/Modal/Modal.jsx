@@ -2,7 +2,6 @@ import React from 'react';
 import { Component } from 'react';
 import { createPortal } from 'react-dom';
 import { Modal, Overlay } from './Modal.styled';
-// import * as basicLightbox from 'basiclightbox';
 
 const modalRoot = document.querySelector('#modal-root');
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ImageItem, Image } from './ImageGalleryItem.styled';
+import { ImageItem, Image, ImageModal } from './ImageGalleryItem.styled';
 import ModalWindow from '../Modal/Modal';
 
 class ImageGalleryItem extends Component {
@@ -21,7 +21,7 @@ class ImageGalleryItem extends Component {
         </ImageItem>
         {this.state.showModal && (
           <ModalWindow close={this.toggleModal}>
-            <img src={largeImageURL} alt={tags} />
+            <ImageModal src={largeImageURL} alt={tags} />
           </ModalWindow>
         )}
       </>

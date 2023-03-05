@@ -1,9 +1,10 @@
 import { Component } from 'react';
-import Searchbar from './Searchbar/Searchbar';
-import ImageGallery from './ImageGallery/ImageGallery';
 import { GlobalStyle } from '../GlobalStyle';
 import { Layout } from '../Layout';
 import { getPhoto } from '../services/getPhoto';
+import { TitelWithoutImg } from './App.styled';
+import Searchbar from './Searchbar/Searchbar';
+import ImageGallery from './ImageGallery/ImageGallery';
 import ButtonLoad from './Button/Button';
 
 import Notiflix from 'notiflix';
@@ -71,12 +72,20 @@ class App extends Component {
     return (
       <Layout>
         <GlobalStyle />
+
         <Searchbar onSearch={this.onSearch} />
-        <ImageGallery
-          gallery={this.state.gallery}
-          status={this.state.status}
-          error={this.state.error}
-        />
+        {this.state.searchParameter ? (
+          <ImageGallery
+            gallery={this.state.gallery}
+            status={this.state.status}
+            error={this.state.error}
+          />
+        ) : (
+          <TitelWithoutImg>
+            Start searching for the best images...
+          </TitelWithoutImg>
+        )}
+
         {this.state.gallery.length > 0 && (
           <ButtonLoad handleLoad={this.handleLoad} />
         )}

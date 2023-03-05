@@ -1,7 +1,7 @@
 import React from 'react';
-import { ImageGalleryUl } from './ImageGallery.styled';
 import Loader from '../Loader/Loader';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
+import { ImageGalleryUl } from './ImageGallery.styled';
 
 const ImageGallery = ({ status, error, gallery }) => {
   if (status === 'pending') return <Loader />;
