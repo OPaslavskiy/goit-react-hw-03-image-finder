@@ -30,6 +30,7 @@ export const SearchbarForm = styled.form`
 `;
 
 export const SearchFormBtn = styled.button`
+  background-color: #fff;
   display: inline-block;
   width: 48px;
   height: 48px;

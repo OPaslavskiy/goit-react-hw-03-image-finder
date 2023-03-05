@@ -16,7 +16,7 @@ Notiflix.Notify.init({
 
 class ImageGallery extends Component {
   state = {
-    gallery: {},
+    gallery: [],
     error: '',
     status: 'stoped',
     page: 1,
@@ -33,8 +33,16 @@ class ImageGallery extends Component {
         .then(response => response.json())
         .then(photo => {
           if (photo.hits.length) {
-            this.setState({ gallery: photo, status: 'resolved' });
-            // images: [...this.state.images, ...data.hits];
+            this.setState({
+              gallery: [...this.state.gallery, ...photo.hits],
+              status: 'resolved',
+            });
+            if (prevProps.searchParameter !== this.props.searchParameter) {
+              this.setState({
+                gallery: [...photo.hits],
+                status: 'resolved',
+              });
+            }
           } else {
             Notiflix.Notify.warning('Enter a valid search parameter');
             this.setState({ status: 'rejected' });

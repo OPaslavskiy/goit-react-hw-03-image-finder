@@ -7,7 +7,7 @@ import {
   SearchFormBtnLabel,
   SearchFormInput,
 } from './Searchbar.styled';
-import { BsFillSearchHeartFill } from 'react-icons/bs';
+import { FcSearch } from 'react-icons/fc';
 
 import Notiflix from 'notiflix';
 Notiflix.Notify.init({
@@ -41,9 +41,8 @@ class Searchbar extends Component {
       <SearchbarHeder>
         <SearchbarForm onSubmit={this.handleSubmit} status={'pending'}>
           <SearchFormBtn type="submit">
-            <BsFillSearchHeartFill
+            <FcSearch
               style={{
-                color: 'rgb(63, 81, 181)',
                 height: '32px',
                 width: '32px',
               }}
