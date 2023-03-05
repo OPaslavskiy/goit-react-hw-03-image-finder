@@ -57,7 +57,6 @@ class App extends Component {
   }
 
   handleLoad = () => {
-    console.log(`123456`);
     let Scroll = require('react-scroll');
     let scroll = Scroll.animateScroll;
     scroll.scrollMore(window.innerHeight - 125);

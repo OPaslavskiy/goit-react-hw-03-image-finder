@@ -11,7 +11,7 @@ const ImageGallery = ({ status, error, gallery }) => {
       <>
         <ImageGalleryUl>
           {gallery.map(photo => {
-            return <ImageGalleryItem photo={photo} />;
+            return <ImageGalleryItem key={photo.id} photo={photo} />;
           })}
         </ImageGalleryUl>
       </>

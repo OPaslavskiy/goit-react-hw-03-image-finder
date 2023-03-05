@@ -8,19 +8,24 @@ class ImageGalleryItem extends Component {
   };
 
   toggleModal = () => {
-    this.setState({ showModal: true });
+    this.setState(state => ({ showModal: !state.showModal }));
   };
 
   render() {
-    const { id, tags, largeImageURL, webformatURL } = this.props.photo;
+    const { tags, largeImageURL, webformatURL } = this.props.photo;
 
     return (
       <>
-        <ImageItem key={id} onClick={this.toggleModal}>
+        <ImageItem onClick={this.toggleModal}>
           <Image src={webformatURL} alt={tags} />
         </ImageItem>
         {this.state.showModal && (
-          <ModalWindow bigPhoto={largeImageURL} alt={tags} />
+          <ModalWindow>
+            <img src={largeImageURL} alt={tags} />
+            <button type="button" onClick={this.toggleModal}>
+              Close
+            </button>
+          </ModalWindow>
         )}
       </>
     );
