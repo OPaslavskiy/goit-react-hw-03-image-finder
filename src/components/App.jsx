@@ -44,6 +44,7 @@ class App extends Component {
               this.setState({
                 gallery: [...photo.hits],
                 status: 'resolved',
+                page: 1,
               });
             }
           } else {
