@@ -8,7 +8,6 @@ class ImageGalleryItem extends Component {
   };
 
   toggleModal = () => {
-    console.log(`open modal`);
     this.setState({ showModal: true });
   };
 
@@ -20,11 +19,7 @@ class ImageGalleryItem extends Component {
             <ImageItem key={photo.id} onClick={this.toggleModal}>
               <Image src={photo.webformatURL} alt={photo.tags} />
               {this.state.showModal && (
-                <ModalWindow
-                  key={photo.id}
-                  bigPhoto={photo.largeImageURL}
-                  alt={photo.tags}
-                />
+                <ModalWindow bigPhoto={photo.largeImageURL} alt={photo.tags} />
               )}
             </ImageItem>
           </>
