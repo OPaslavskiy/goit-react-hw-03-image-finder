@@ -1,5 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
+import * as Scroll from 'react-scroll';
 import Loader from '../Loader/Loader';
 import ButtonLoad from '../Button/Button';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
@@ -55,6 +56,9 @@ class ImageGallery extends Component {
   }
 
   handleLoad = () => {
+    let Scroll = require('react-scroll');
+    let scroll = Scroll.animateScroll;
+    scroll.scrollMore(window.innerHeight - 100);
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
