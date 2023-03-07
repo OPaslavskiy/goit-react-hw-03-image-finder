@@ -9,7 +9,7 @@ import ButtonLoad from './Button/Button';
 
 import Notiflix from 'notiflix';
 Notiflix.Notify.init({
-  width: '320px',
+  width: '420px',
   position: 'center-top',
   distance: '100px',
   timeout: 1500,
@@ -44,6 +44,11 @@ class App extends Component {
             isLoading: true,
             showBtn: page < Math.ceil(photo.totalHits / 12),
           }));
+          if (page === 1) {
+            Notiflix.Notify.success(
+              `We found ${photo.totalHits} photos for you...`
+            );
+          }
         })
         .catch(error => {
           this.setState({ error, status: 'rejected' });
