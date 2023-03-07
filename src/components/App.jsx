@@ -4,6 +4,7 @@ import { Layout } from '../Layout';
 import { getPhoto } from '../services/getPhoto';
 import { TitelWithoutImg } from './App.styled';
 import { Searchbar } from './Searchbar/Searchbar';
+import { animateScroll as scroll } from 'react-scroll';
 import ImageGallery from './ImageGallery/ImageGallery';
 import ButtonLoad from './Button/Button';
 
@@ -57,8 +58,6 @@ class App extends Component {
   }
 
   handleLoad = () => {
-    let Scroll = require('react-scroll');
-    let scroll = Scroll.animateScroll;
     scroll.scrollMore(window.innerHeight - 125);
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
