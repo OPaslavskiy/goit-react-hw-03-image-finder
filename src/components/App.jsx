@@ -3,7 +3,7 @@ import { GlobalStyle } from '../GlobalStyle';
 import { Layout } from '../Layout';
 import { getPhoto } from '../services/getPhoto';
 import { TitelWithoutImg } from './App.styled';
-import Searchbar from './Searchbar/Searchbar';
+import { Searchbar } from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import ButtonLoad from './Button/Button';
 
@@ -23,34 +23,27 @@ class App extends Component {
     status: 'stoped',
     page: 1,
     searchParameter: '',
+    showBtn: false,
   };
 
   componentDidUpdate(_, prevState) {
+    const { searchParameter, page } = this.state;
+
     if (
-      prevState.searchParameter !== this.state.searchParameter ||
-      prevState.page !== this.state.page
+      prevState.searchParameter !== searchParameter ||
+      prevState.page !== page
     ) {
       this.setState({ status: 'pending' });
 
-      getPhoto(this.state.searchParameter, this.state.page)
+      getPhoto(searchParameter, page)
         .then(response => response.json())
         .then(photo => {
-          if (photo.hits.length) {
-            this.setState({
-              gallery: [...this.state.gallery, ...photo.hits],
-              status: 'resolved',
-            });
-            if (prevState.searchParameter !== this.state.searchParameter) {
-              this.setState({
-                gallery: [...photo.hits],
-                status: 'resolved',
-                page: 1,
-              });
-            }
-          } else {
-            Notiflix.Notify.warning('Enter a valid search parameter');
-            this.setState({ status: 'rejected' });
-          }
+          this.setState(prevState => ({
+            gallery: [...prevState.gallery, ...photo.hits],
+            status: 'resolved',
+            isLoading: true,
+            showBtn: page < Math.ceil(photo.totalHits / 12),
+          }));
         })
         .catch(error => {
           this.setState({ error, status: 'rejected' });
@@ -66,30 +59,31 @@ class App extends Component {
   };
 
   onSearch = searchParameter => {
-    this.setState({ searchParameter });
+    this.setState({
+      searchParameter,
+      gallery: [],
+      page: 1,
+      status: 'stoped',
+      showBtn: false,
+    });
   };
 
   render() {
+    const { searchParameter, gallery, status, error, showBtn } = this.state;
     return (
       <Layout>
         <GlobalStyle />
 
         <Searchbar onSearch={this.onSearch} />
-        {this.state.searchParameter ? (
-          <ImageGallery
-            gallery={this.state.gallery}
-            status={this.state.status}
-            error={this.state.error}
-          />
+        {searchParameter ? (
+          <ImageGallery gallery={gallery} status={status} error={error} />
         ) : (
           <TitelWithoutImg>
             Start searching for the best images...
           </TitelWithoutImg>
         )}
 
-        {this.state.gallery.length > 0 && (
-          <ButtonLoad handleLoad={this.handleLoad} />
-        )}
+        {showBtn && <ButtonLoad handleLoad={this.handleLoad} />}
       </Layout>
     );
   }

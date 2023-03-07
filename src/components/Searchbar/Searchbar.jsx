@@ -17,7 +17,7 @@ Notiflix.Notify.init({
   fontSize: '20px',
 });
 
-class Searchbar extends Component {
+export class Searchbar extends Component {
   state = {
     value: '',
   };
@@ -62,5 +62,3 @@ class Searchbar extends Component {
     );
   }
 }
-
-export default Searchbar;
