@@ -74,3 +74,9 @@ export const SearchFormInput = styled.input`
     font-size: 18px;
   }
 `;
+
+export const Lebel = styled.a`
+  font-size: 15px;
+  font-weight: 500;
+  color: #3f51b5;
+`;

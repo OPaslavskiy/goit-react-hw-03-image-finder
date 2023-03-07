@@ -5,6 +5,7 @@ import {
   SearchFormBtn,
   SearchFormBtnLabel,
   SearchFormInput,
+  Lebel,
 } from './Searchbar.styled';
 import { FcSearch } from 'react-icons/fc';
 
@@ -37,28 +38,31 @@ export class Searchbar extends Component {
 
   render() {
     return (
-      <SearchbarHeder>
-        <SearchbarForm onSubmit={this.handleSubmit} status={'pending'}>
-          <SearchFormBtn type="submit">
-            <FcSearch
-              style={{
-                height: '32px',
-                width: '32px',
-              }}
-            />
-            <SearchFormBtnLabel>Search</SearchFormBtnLabel>
-          </SearchFormBtn>
+      <>
+        <Lebel href="https://github.com/OPaslavskiy">by OPaslavskyi</Lebel>
+        <SearchbarHeder>
+          <SearchbarForm onSubmit={this.handleSubmit} status={'pending'}>
+            <SearchFormBtn type="submit">
+              <FcSearch
+                style={{
+                  height: '32px',
+                  width: '32px',
+                }}
+              />
+              <SearchFormBtnLabel>Search</SearchFormBtnLabel>
+            </SearchFormBtn>
 
-          <SearchFormInput
-            type="text"
-            autocomplete="off"
-            autoFocus
-            placeholder="Search images and photos"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </SearchbarForm>
-      </SearchbarHeder>
+            <SearchFormInput
+              type="text"
+              autocomplete="off"
+              autoFocus
+              placeholder="Search images and photos"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </SearchbarForm>
+        </SearchbarHeder>
+      </>
     );
   }
 }
